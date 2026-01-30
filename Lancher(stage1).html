@@ -1,0 +1,37 @@
+<script>
+    const newWindow = window.open('about:blank', '_blank');
+    newWindow.document.write(`
+<html lang="en">
+    <head>
+        <title>about:lunacher</title>
+    </head>
+    <body>
+    <h1>Welcome to about:luancher</h1>
+    <p>a quick and easy way to luanch programs in about:blank</p>
+    <input type="button" id="button" value="Luanch!">
+    <input type="file" id="file" name="file" placeholder="hello">
+    </body>
+</html>
+<script>
+ let button = document.getElementById("button");
+const fileInput = document.getElementById("file");
+
+button.addEventListener("click", function() {
+    if (fileInput.files.length === 0) return alert("err; no file selected, pleese select a valid file");
+
+    const selectedFile = fileInput.files[0]; 
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        const fileContent = e.target.result;
+        const newWindow = window.open('about:blank', '_blank');
+        newWindow.document.write(fileContent);
+        newWindow.document.close(); 
+    };
+
+    reader.readAsText(selectedFile); 
+});
+
+<\/script>
+`);
+</script>
